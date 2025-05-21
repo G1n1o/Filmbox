@@ -1,0 +1,94 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.main-content {
+  flex: 1 0 auto;
+}
+
+.logo {
+  max-height: 30px;
+}
+
+.custom-search {
+  width: 400px;
+  max-width: 100%;
+}
+
+.swiper-wrapper-center {
+  min-height: 0;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-swiper {
+  width: 100%;
+  max-width: 1600px;
+  padding: 0 40px;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+}
+
+.swiper-nav-button {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+  font-size: 24px;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.swiper-nav-button.left {
+  left: 0;
+}
+
+.swiper-nav-button.right {
+  right: 0;
+}
+
+.movie-card-img {
+  width: 100%;
+  object-fit: cover;
+  aspect-ratio: 2 / 3;
+  border-radius: 8px;
+}
+
+.spinner-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

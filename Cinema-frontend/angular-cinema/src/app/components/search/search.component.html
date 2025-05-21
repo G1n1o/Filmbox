@@ -1,0 +1,9 @@
+<div class="d-flex align-items-center me-auto custom-search">
+    <input #myInput class="form-control me-2 " 
+    type="text" 
+    placeholder="Szukaj filmu..." 
+    aria-label="Search"
+    (keyup.enter)="doSearch(myInput.value)">
+
+    <button  (click)="doSearch(myInput.value)" class="btn btn-outline-light">Szukaj</button>
+</div>
