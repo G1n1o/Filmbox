@@ -1,0 +1,25 @@
+# ======= ANGULAR FRONTEND (Cinema-frontend) =======
+Cinema-frontend/node_modules/
+Cinema-frontend/dist/
+Cinema-frontend/.angular/
+Cinema-frontend/.vscode/
+Cinema-frontend/.idea/
+
+# ======= SPRING BOOT BACKEND (Cinema-backend) =======
+Cinema-backend/target/
+Cinema-backend/.classpath
+Cinema-backend/.project
+Cinema-backend/.settings/
+Cinema-backend/.idea/
+
+# ======= IGNORE SCRIPTS FOLDER =======
+Scripts/
+
+# ======= SYSTEM FILES =======
+.DS_Store
+Thumbs.db
+
+# ======= ENV / SECRETS =======
+*.env
+.env.local
+.env
