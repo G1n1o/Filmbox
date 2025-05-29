@@ -38,6 +38,8 @@ app-root {
   max-width: 100%;
 }
 
+/* SWIPPER */
+
 .swiper-wrapper-center {
   min-height: 0;
   padding: 40px 20px;
@@ -79,6 +81,8 @@ app-root {
   right: 0;
 }
 
+
+
 .movie-card-img {
   width: 100%;
   object-fit: cover;
@@ -86,9 +90,170 @@ app-root {
   border-radius: 8px;
 }
 
+.card-body a {
+  text-decoration: none;
+  color: black;
+}
+
 .spinner-container {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+
+/*
+SCREENING
+*/
+
+.seating-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 1rem;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.cinema-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.row-label {
+  width: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+  color: #666;
+}
+
+
+.seat-row {
+  display: flex;
+  gap: 0.2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.seat {
+  width: 2rem;
+  height: 2rem;
+  background-color: #e0e0e0;
+  border: 1px solid #999;
+  border-radius: 0.3rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.seat.available:hover {
+  background-color: #b0bec5;
+}
+
+.seat.reserved {
+  background-color: #9e9e9e; /* Szary - zarezerwowane */
+  color: white;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.seat.selected {
+  background-color: #2196f3; /* Niebieski - wybrany */
+  color: white;
+}
+
+.screen {
+  background-color: #ccc;
+  color: #333;
+  padding: 0.6rem 1rem;
+  margin: 0.2rem auto;
+  text-align: center;
+  border-radius: 0.3rem;
+  font-weight: bold;
+  width: 100%;
+  max-width: 600px;
+}
+
+.movie-details-reservation {
+  text-align: center;
+  font-size: 0.7rem;
+}
+
+.movie-details-reservation h2 {
+  margin-bottom: 0.3rem;
+  font-size: 1.3rem;
+}
+
+.reserve-button {
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reserve-button:disabled {
+  background-color: #b0bec5;
+  cursor: not-allowed;
+}
+
+.reserve-button:hover:not(:disabled) {
+  background-color: #1976d2;
+}
+
+
+/*
+FOOTER
+*/
+
+.footer {
+  background-color: #212529;
+  color: white;
+  text-align: center;
+  padding: 0.5rem 0;
+  flex-shrink: 0;
+}
+
+
+@media (max-width: 768px) {
+  .seat {
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 0.7rem;
+  }
+
+  .row-label {
+    width: 1.2rem;
+    font-size: 0.8rem;
+  }
+
+  .seating-container {
+    padding: 0.5rem;
+    gap: 0.3rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .movie-details-reservation,
+  .screen,
+  .seating-container {
+    transform: scale(1.4);
+    transform-origin: top center;
+  }
+
+  .movie-details-reservation {
+  text-align: center;
+  margin: 1.5rem;
+  font-size: 0.7rem;
+}
 }

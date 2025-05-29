@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from 'src/app/common/movie';
 import { MovieService } from 'src/app/services/movie.service';
 import { Location } from '@angular/common';
@@ -20,6 +20,7 @@ export class MovieDetailsComponent {
   constructor(
     private movieService: MovieService,
     private route: ActivatedRoute,
+    private router: Router,
     private location: Location
   ) {}
 
@@ -48,6 +49,6 @@ export class MovieDetailsComponent {
   }
 
   onReserve(screeningId: number) {
-    console.log('Rezerwuj seans ID:', screeningId);
+    this.router.navigate(['/screenings', screeningId, 'reservation']);
   }
 }

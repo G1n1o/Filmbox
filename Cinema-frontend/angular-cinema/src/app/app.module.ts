@@ -10,8 +10,12 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SearchComponent } from './components/search/search.component';
 import { Routes, RouterModule } from '@angular/router';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
+import { ScheduledScreeningsComponent } from './components/scheduled-screenings/scheduled-screenings.component';
+import { SeatSelectionComponent } from './components/seat-selection/seat-selection.component';
 
 const routes: Routes = [
+  { path: 'screenings/:id/reservation', component: SeatSelectionComponent },
+  { path: 'screenings', component: ScheduledScreeningsComponent },
   { path: 'movies/:id', component:MovieDetailsComponent},
   { path: 'search/:keyword', component:MovieListComponent},
   { path: 'movies', component: MovieListComponent },
