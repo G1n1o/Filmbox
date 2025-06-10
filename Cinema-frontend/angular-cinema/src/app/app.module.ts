@@ -2,7 +2,6 @@ import { LOCALE_ID, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
-
 import { AppComponent } from './app.component';
 import { MovieListComponent } from './components/movie-list/movie-list.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -12,12 +11,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 import { ScheduledScreeningsComponent } from './components/scheduled-screenings/scheduled-screenings.component';
 import { SeatSelectionComponent } from './components/seat-selection/seat-selection.component';
+import { ReservationFormComponent } from './components/reservation-form/reservation-form.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { SummaryComponent } from './components/summary/summary.component';
 
 const routes: Routes = [
+  { path: 'summary', component: SummaryComponent },
+  { path: 'reservation', component: ReservationFormComponent },
   { path: 'screenings/:id/reservation', component: SeatSelectionComponent },
   { path: 'screenings', component: ScheduledScreeningsComponent },
-  { path: 'movies/:id', component:MovieDetailsComponent},
-  { path: 'search/:keyword', component:MovieListComponent},
+  { path: 'movies/:id', component: MovieDetailsComponent },
+  { path: 'search/:keyword', component: MovieListComponent },
   { path: 'movies', component: MovieListComponent },
   { path: '', redirectTo: '/movies', pathMatch: 'full' },
   { path: '**', redirectTo: '/movies', pathMatch: 'full' },
@@ -30,9 +34,9 @@ const routes: Routes = [
     BrowserModule,
     HttpClientModule,
     FooterComponent,
-    SearchComponent
+    SearchComponent,
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'pl' }],
+  providers: [{ provide: LOCALE_ID, useValue: 'pl' }, provideAnimationsAsync()],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
 })

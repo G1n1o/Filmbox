@@ -4,12 +4,13 @@ import { Screening } from '../common/screening';
 import { HttpClient } from '@angular/common/http';
 import { CinemaHall } from '../common/cinema-hall';
 import { ReservedSeat } from '../common/reserved-seat';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ScreeningService {
-  private baseUrl = 'http://localhost:8080/api';
+  private baseUrl = environment.filmboxApiUrl;
 
   constructor(private http: HttpClient) {}
 

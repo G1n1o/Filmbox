@@ -1,34 +1,47 @@
-<div class="screen">EKRAN</div>
 
-<div *ngIf="screening" class="movie-details-reservation">
+  <div class="back-button-container">
+    <button class="back-button" (click)="goBack()">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+  </div>
+
+  <div class="screen">EKRAN</div>
+
+  <div *ngIf="screening" class="movie-details-reservation">
     <h2>{{ screening.movie.title }}</h2>
-    <p> {{ screening.cinemaHall.name }} | Godzina: {{ screening.screeningTime | date: 'HH:mm' }}</p>
-</div>
+    <p>
+      {{ screening.cinemaHall.name }} |
+      Godzina: {{ screening.screeningTime | date: 'HH:mm' }}
+    </p>
+  </div>
 
-
-<div class="seating-container">
+  <div class="seating-container">
     <div class="cinema-row" *ngFor="let row of seats; let rowIndex = index">
-
-        <div class="row-label">{{ toRoman(rowIndex + 1) }}</div>
-
-        <div class="seat-row">
-            <button *ngFor="let seat of row" class="seat" [ngClass]="{
-                    reserved: seat.reserved,
-                    selected: isSeatSelected(seat),
-                    available: !seat.reserved && !isSeatSelected(seat)
-    }" (click)="toggleSeatSelection(seat)">
-                {{ seat.seatNumber }}
-            </button>
-        </div>
-
-        <div class="row-label">{{ toRoman(rowIndex + 1) }}</div>
-
+      <div class="row-label">{{ toRoman(rowIndex + 1) }}</div>
+      <div class="seat-row">
+        <button
+          *ngFor="let seat of row"
+          class="seat"
+          [ngClass]="{
+            reserved: seat.reserved,
+            selected: isSeatSelected(seat),
+            available: !seat.reserved && !isSeatSelected(seat)
+          }"
+          (click)="toggleSeatSelection(seat)"
+        >
+          {{ seat.seatNumber }}
+        </button>
+      </div>
+      <div class="row-label">{{ toRoman(rowIndex + 1) }}</div>
     </div>
 
-    <button class="reserve-button" [disabled]="selectedSeats.length === 0" (click)="reserveSeats()">
-        <i class="fas fa-ticket-alt"></i>
-         Rezerwuj {{ selectedSeats.length }} {{ getSeatLabel(selectedSeats.length) }}
+    <button
+      class="reserve-button"
+      [disabled]="selectedSeats.length === 0"
+      (click)="reserveSeats()"
+    >
+      <i class="fas fa-ticket-alt"></i>
+      Rezerwuj {{ selectedSeats.length }} {{ getSeatLabel(selectedSeats.length) }}
     </button>
+  </div>
 
-
-</div>

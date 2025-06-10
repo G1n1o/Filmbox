@@ -1,15 +1,16 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ReservedSeat } from 'src/app/common/reserved-seat';
 import { Screening } from 'src/app/common/screening';
 import { Seat } from 'src/app/common/seat';
 import { ScreeningService } from 'src/app/services/screening.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-seat-selection',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './seat-selection.component.html',
   styleUrl: './seat-selection.component.css',
 })
@@ -21,6 +22,8 @@ export class SeatSelectionComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
+    private location: Location,
     private screeningService: ScreeningService
   ) {}
 
@@ -105,7 +108,12 @@ export class SeatSelectionComponent implements OnInit {
   
 
   reserveSeats() {
-    console.log("Rezerwacja");
+   this.router.navigate(['/reservation'], {
+      state: {
+        selectedSeats: this.selectedSeats,
+        screeningId: this.screening.id
+      }
+    });
   }
 
   getSeatLabel(count: number): string {
@@ -131,5 +139,9 @@ export class SeatSelectionComponent implements OnInit {
       12: 'XII',
     };
     return romans[num] || num.toString();
+  }
+
+   goBack(): void {
+    this.location.back();
   }
 }

@@ -10,4 +10,8 @@ import java.util.List;
 public interface ScreeningRepository extends JpaRepository<Screening, Integer> {
 
     List<Screening> findByMovieId(Integer movieId);
+
+    List<Screening> findAllByOrderByScreeningTimeAsc();
+
+    Screening getScreeningById(Integer id);
 }

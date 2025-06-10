@@ -1,0 +1,39 @@
+<div class="container mt-5">
+  <div class="card shadow-sm">
+    <div class="card-header bg-success text-white">
+      <h3 class="mb-0">Podsumowanie rezerwacji</h3>
+    </div>
+    <div class="card-body">
+      <div *ngIf="reservationData; else noData">
+        <p class="lead">Dziękujemy za rezerwację!</p>
+        <ul class="list-group mb-3">
+          <li class="list-group-item">
+            <strong>Rezerwacja dla:</strong> {{ reservationData.user.firstName }} {{ reservationData.user.lastName }}
+          </li>
+          <li class="list-group-item">
+            <strong>E-mail:</strong> {{ reservationData.user.email }}
+          </li>
+          
+          <li class="list-group-item">
+            <strong>Wybrane miejsca:</strong>
+            <ul class="mt-2">
+              <li *ngFor="let seat of reservationData.seats">
+                Rząd: {{ seat.seatRow }}, Miejsce: {{ seat.seatNumber }}
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <strong>
+          Bilety zostaną wysłane na podany adres e-mail.
+        </strong>
+        <div class="mt-3">
+        <a class="btn btn-primary" [routerLink]="['/']">Powrót do strony głównej</a>
+        </div>
+      </div>
+
+      <ng-template #noData>
+        <p class="text-danger">Brak danych rezerwacji do wyświetlenia.</p>
+      </ng-template>
+    </div>
+  </div>
+</div>

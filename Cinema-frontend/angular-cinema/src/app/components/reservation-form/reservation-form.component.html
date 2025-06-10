@@ -1,0 +1,99 @@
+<div class="container my-5">
+    <div class="card shadow mx-auto" style="max-width: 500px;">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4">Potwierdź rezerwację</h2>
+
+            <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+                <div formGroupName="customer">
+                    <!-- First Name -->
+                    <div class="mb-3">
+                        <input type="text" class="form-control"
+                            [class.is-invalid]="firstName?.invalid && (firstName?.dirty || firstName?.touched)"
+                            formControlName="firstName" placeholder="Imię" />
+                        <div class="invalid-feedback">
+                            <ng-container
+                                *ngIf="firstName?.errors?.['required'] || firstName?.errors?.['notOnlyWhitespace']">
+                                Imię jest wymagane.
+                            </ng-container>
+                            <ng-container *ngIf="firstName?.errors?.['minlength']">
+                                Imię powinno posiadać minimum 2 znaki.
+                            </ng-container>
+                        </div>
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="mb-3">
+                        <input type="text" class="form-control"
+                            [class.is-invalid]="lastName?.invalid && (lastName?.dirty || lastName?.touched)"
+                            formControlName="lastName" placeholder="Nazwisko" />
+                        <div class="invalid-feedback">
+                            <ng-container
+                                *ngIf="lastName?.errors?.['required'] || lastName?.errors?.['notOnlyWhitespace']">
+                                Nazwisko jest wymagane.
+                            </ng-container>
+                            <ng-container *ngIf="lastName?.errors?.['minlength']">
+                                Nazwisko powinno posiadać minimum 2 znaki.
+                            </ng-container>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mb-3">
+                        <input type="email" class="form-control"
+                            [class.is-invalid]="email?.invalid && (email?.dirty || email?.touched)"
+                            formControlName="email" placeholder="Email" />
+                        <div class="invalid-feedback">
+                            <ng-container *ngIf="email?.errors?.['required']">
+                                Email jest wymagany.
+                            </ng-container>
+                            <ng-container *ngIf="email?.errors?.['pattern']">
+                                Nieprawidłowy adres email.
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seats -->
+                <div class="mt-4">
+                    <h5 class="fw-semibold">Wybrane miejsca:</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" *ngFor="let seat of selectedSeats">
+                            Rząd: {{ seat.rowNumber }}, Miejsce: {{ seat.seatNumber }}
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="mt-4 border-top pt-3">
+                    <h5 class="fw-bold mb-3">Podsumowanie:</h5>
+                    <p>Ilość miejsc: {{ selectedSeats.length }}</p>
+                    <p>Cena za bilet: {{ ticketPrice }} zł</p>
+                    <p class="fw-semibold">Do zapłaty: {{ totalPrice }} zł</p>
+                </div>
+
+                <!--Credit Card-->
+                <!--Stripe Elements Credit Card Section-->
+                <div formGroupName="creditCard" class="mt-4 border-top pt-3">
+                    <h5 class="fw-bold mb-3">Płatność kartą</h5>
+                    <div id="card-element">
+                        <!--a Stripe elemenet will be inserted here-->
+                    </div>
+                    <!-- Used to display form errors-->
+                     <div id="card-errors"></div>
+
+                </div>
+
+
+                <!-- Reservation -->
+                <button class="btn btn-primary w-100 mt-4" type="submit" [disabled]="isDisabled">Rezerwuj i opłać</button>
+
+
+                <!-- Back -->
+                <button type="button" class="btn btn-outline-secondary w-100 mt-2" (click)="goBack()">
+                    Powrót
+                </button>
+
+
+            </form>
+        </div>
+    </div>
+</div>

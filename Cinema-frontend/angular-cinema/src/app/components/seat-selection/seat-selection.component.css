@@ -1,0 +1,162 @@
+.seating-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 1rem;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+
+.cinema-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.row-label {
+  width: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+  color: #666;
+}
+
+.seat-row {
+  display: flex;
+  gap: 0.2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.seat {
+  width: 1.7rem;
+  height: 1.7rem;
+  background-color: #e0e0e0;
+  border: 1px solid #999;
+  border-radius: 0.3rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.seat.available:hover {
+  background-color: #b0bec5;
+}
+
+.seat.reserved {
+  background-color: #9e9e9e; /* Szary - zarezerwowane */
+  color: white;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.seat.selected {
+  background-color: #2196f3; /* Niebieski - wybrany */
+  color: white;
+}
+
+.screen {
+  background-color: #ccc;
+  color: #333;
+  padding: 0.6rem 1rem;
+  margin: 0.2rem auto;
+  text-align: center;
+  border-radius: 0.3rem;
+  font-weight: bold;
+  width: 100%;
+  max-width: 600px;
+}
+
+.movie-details-reservation {
+  text-align: center;
+  font-size: 0.7rem;
+}
+
+.movie-details-reservation h2 {
+  margin-bottom: 0.3rem;
+  font-size: 1.3rem;
+}
+
+.reserve-button {
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: static; 
+
+}
+
+.reserve-button:disabled {
+  background-color: #b0bec5;
+  cursor: not-allowed;
+}
+
+.reserve-button:hover:not(:disabled) {
+  background-color: #1976d2;
+}
+
+/* Button */
+
+.back-button-container {
+  position: relative;
+  height: 0;
+}
+
+.back-button {
+  position: absolute;
+  top: 1rem;
+  left: 2rem;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: #444;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  z-index: 10;
+}
+
+.back-button:hover {
+  color: #000;
+}
+
+@media (max-width: 768px) {
+  .seat {
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 0.7rem;
+  }
+
+  .row-label {
+    width: 1.2rem;
+    font-size: 0.8rem;
+  }
+
+  .seating-container {
+    padding: 0.5rem;
+    gap: 0.3rem;
+  }
+}
+
+@media (min-width: 1440px) {
+
+  .seat {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1rem;
+  }
+
+  .reserve-button {
+    font-size: 1.2rem;
+    padding: 1rem 2rem;
+  }
+}

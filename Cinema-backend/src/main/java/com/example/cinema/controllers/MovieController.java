@@ -43,9 +43,4 @@ public class MovieController {
     public Movie addMovie(@RequestBody Movie movie) {
         return movieService.saveMovie(movie);
     }
-
-    @DeleteMapping("/{id}")
-    public void deleteMovie(@PathVariable Integer id) {
-        movieService.deleteMovie(id);
-    }
 }

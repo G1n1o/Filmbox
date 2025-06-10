@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Movie } from '../common/movie';
 import { Screening } from '../common/screening';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MovieService {
  
-  private apiUrl = 'http://localhost:8080/api/movies';
+  private apiUrl = environment.filmboxApiUrl + '/movies';
 
   constructor(private http: HttpClient) {}
 

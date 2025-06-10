@@ -17,4 +17,10 @@ public class CinemaHall {
     private String name;
 
     private int capacity;
+
+    @Column(name = "rows", nullable = false)
+    private int rows;
+
+    @Column(name = "seats_per_row", nullable = false)
+    private int seatsPerRow;
 }
