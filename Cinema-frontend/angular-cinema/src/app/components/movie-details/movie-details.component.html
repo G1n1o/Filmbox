@@ -3,7 +3,7 @@
     <!-- Plakat filmu -->
     <div class="col-md-4 text-center mb-3">
       <img
-        [src]="movie?.posterUrl"
+        [src]="getPosterFullUrl(movie!.posterUrl)"
         alt="{{ movie?.title }} poster"
         class="img-fluid rounded shadow"
       />

@@ -5,6 +5,7 @@ import { Movie } from 'src/app/common/movie';
 import { MovieService } from 'src/app/services/movie.service';
 import { Location } from '@angular/common';
 import { Screening } from 'src/app/common/screening';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-movie-details',
@@ -28,6 +29,10 @@ export class MovieDetailsComponent {
     this.route.paramMap.subscribe(() => {
       this.handleMovieDetails();
     });
+  }
+
+  getPosterFullUrl(posterUrl: string) {
+    return environment.filmboxImage + posterUrl;
   }
 
   handleMovieDetails() {

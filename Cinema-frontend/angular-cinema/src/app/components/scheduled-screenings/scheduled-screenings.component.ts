@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { Screening } from 'src/app/common/screening';
 import { ScreeningService } from 'src/app/services/screening.service';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-scheduled-screenings',
@@ -29,6 +30,9 @@ export class ScheduledScreeningsComponent implements OnInit {
       this.sortedDates = Object.keys(this.groupedScreenings).sort();
     });
   }
+    getPosterFullUrl(posterUrl: string) {
+      return environment.filmboxImage + posterUrl;
+    }
 
   groupByDate(screenings: Screening[]): { [date: string]: Screening[] } {
     const result: { [date: string]: Screening[] } = {};
