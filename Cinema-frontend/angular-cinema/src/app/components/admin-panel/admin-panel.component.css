@@ -1,0 +1,13 @@
+.sidebar {
+  height: 100vh;
+  position: fixed;
+}
+
+.nav-link {
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  background-color: #495057;
+  border-radius: 5px;
+}

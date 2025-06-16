@@ -9,36 +9,40 @@ import { environment } from 'src/environments/environment.development';
   providedIn: 'root',
 })
 export class MovieService {
- 
   private apiUrl = environment.filmboxApiUrl + '/movies';
 
   constructor(private http: HttpClient) {}
 
   getMovie(theMovieId: number): Observable<Movie> {
-  
-
-      const movieUrl = `${this.apiUrl}/${theMovieId}`
-      return this.http.get<Movie>(movieUrl);
+    const movieUrl = `${this.apiUrl}/${theMovieId}`;
+    return this.http.get<Movie>(movieUrl);
   }
 
   getMovies(): Observable<Movie[]> {
-    
     return this.http.get<Movie[]>(this.apiUrl);
   }
 
   searchMovies(theKeyword: string): Observable<Movie[]> {
-    
-
     const searchUrl = `${this.apiUrl}?search=${theKeyword}`;
-     return this.http.get<Movie[]>(searchUrl);
+    return this.http.get<Movie[]>(searchUrl);
   }
 
-  getScreeningsByMovie(theMovieId:number):Observable<Screening[]> {
-
+  getScreeningsByMovie(theMovieId: number): Observable<Screening[]> {
     const screeningUrl = `${this.apiUrl}/${theMovieId}/screenings`;
     return this.http.get<Screening[]>(screeningUrl);
   }
 
- 
+  // ADMIN PANEL
+  addMovie(formData: FormData) {
+    return this.http.post(this.apiUrl, formData);
+  }
 
+  updateMovie(theMovieId: number, movieData: FormData) {
+    return this.http.put(`${this.apiUrl}/${theMovieId}`, movieData);
+  }
+
+  deleteMovie(movieId: number): Observable<void> {
+    const url = `${this.apiUrl}/${movieId}`;
+    return this.http.delete<void>(url);
+  }
 }

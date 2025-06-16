@@ -1,0 +1,52 @@
+<div class="form-scroll-container overflow-auto" style="max-height: calc(100vh - 220px);">
+    <div class="card shadow-sm p-4">
+        <h2 class="mb-4 text-primary d-flex align-items-center gap-2">
+            <i class="fas fa-film"></i> DODAWANIE NOWEGO FILMU
+        </h2>
+
+        <form [formGroup]="movieForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label">Tytuł</label>
+                <input type="text" class="form-control" formControlName="title" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Opis</label>
+                <textarea class="form-control" formControlName="description" rows="4" required></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Czas trwania (minuty)</label>
+                <input type="number" class="form-control" formControlName="duration" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="poster" class="form-label">Plakat filmu</label>
+                <input type="file" class="form-control" (change)="onFileSelected($event)" required>
+            </div>
+            <div *ngIf="posterPreview">
+                <p>Podgląd plakatu:</p>
+                <img [src]="posterPreview" class="img-thumbnail" style="max-height: 300px;">
+            </div>
+
+
+            <div class="mb-3">
+                <label class="form-label">Data premiery</label>
+                <input type="date" class="form-control" formControlName="releaseDate" required>
+            </div>
+            
+            <div *ngIf="isLoading" class="spinner">
+                ⏳ Trwa dodawanie filmu...
+            </div>
+
+            <button type="submit" class="btn btn-success" [disabled]="movieForm.invalid">
+                <i class="fas fa-plus-circle me-1"></i> Dodaj film
+            </button>
+        </form>
+
+
+        <div *ngIf="successMessage" class="alert alert-success mt-4">
+            {{ successMessage }}
+        </div>
+    </div>
+</div>

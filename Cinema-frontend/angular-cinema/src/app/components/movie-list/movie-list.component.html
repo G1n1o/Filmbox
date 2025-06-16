@@ -7,7 +7,7 @@
       <div class="card custom-card mb-4">
 
         <a routerLink="/movies/{{ movie.id}}">
-          <img [src]="movie.posterUrl" class="card-img-top movie-card-img" [alt]="movie.title" />
+          <img [src]="getPosterFullUrl(movie.posterUrl)" class="card-img-top movie-card-img" [alt]="movie.title" />
         </a>
 
         <div class="card-body">

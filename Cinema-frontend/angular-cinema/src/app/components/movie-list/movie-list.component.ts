@@ -1,12 +1,22 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  OnInit,
+} from '@angular/core';
 import { Movie } from 'src/app/common/movie';
 import { MovieService } from 'src/app/services/movie.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-movie-list',
+  standalone: true,
+  imports: [CommonModule, RouterLink],
   templateUrl: './movie-list.component.html',
   styleUrls: ['./movie-list.component.css'],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class MovieListComponent implements OnInit, AfterViewInit {
   movies: Movie[] = [];
@@ -22,6 +32,10 @@ export class MovieListComponent implements OnInit, AfterViewInit {
     this.route.paramMap.subscribe(() => {
       this.listMovies();
     });
+  }
+
+  getPosterFullUrl(posterUrl: string) {
+    return environment.filmboxImage + posterUrl;
   }
 
   listMovies() {
@@ -48,6 +62,7 @@ export class MovieListComponent implements OnInit, AfterViewInit {
     this.isLoading = true;
     this.movieService.getMovies().subscribe((data) => {
       this.movies = data;
+      console.log(this.movies);
       this.isLoading = false;
     });
   }

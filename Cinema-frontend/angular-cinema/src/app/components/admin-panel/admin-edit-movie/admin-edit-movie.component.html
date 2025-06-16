@@ -1,0 +1,73 @@
+<div class="container mt-4"   style="max-height: calc(100vh - 220px); overflow-y: auto;">
+  <div class="row">
+    <!-- Lewy panel: lista filmów -->
+    <div class="col-md-5">
+      <h3>Filmy</h3>
+      <ul class="list-group">
+        <li *ngFor="let movie of movies" class="list-group-item d-flex justify-content-between align-items-center"
+          [class.active]="selectedMovie?.id === movie.id" style="cursor: pointer;" (click)="onEditMovie(movie)">
+          {{ movie.title }}
+          <div>
+            <button class="btn btn-sm btn-primary me-2" (click)="onEditMovie(movie); $event.stopPropagation()">
+              Edytuj
+            </button>
+            <button class="btn btn-sm btn-danger" (click)="onDeleteMovie(movie.id!); $event.stopPropagation()">
+              Usuń
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Prawy panel: formularz edycji -->
+    <div class="col-md-7" *ngIf="selectedMovie" style="max-height: calc(100vh - 220px); overflow-y: auto;">
+      <h3>Edytuj film: {{ selectedMovie.title }}</h3>
+      <form [formGroup]="movieForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="title" class="form-label">Tytuł</label>
+          <input type="text" id="title" formControlName="title" class="form-control" />
+          <div *ngIf="movieForm.get('title')?.invalid && movieForm.get('title')?.touched" class="text-danger">
+            Tytuł jest wymagany
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Opis</label>
+          <textarea id="description" formControlName="description" class="form-control"></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="duration" class="form-label">Czas trwania (min)</label>
+          <input type="number" id="duration" formControlName="duration" class="form-control" />
+          <div *ngIf="
+              movieForm.get('duration')?.invalid && movieForm.get('duration')?.touched
+            " class="text-danger">
+            Podaj poprawny czas trwania
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="releaseDate" class="form-label">Data premiery</label>
+          <input type="date" id="releaseDate" formControlName="releaseDate" class="form-control" />
+          <div *ngIf="
+              movieForm.get('releaseDate')?.invalid && movieForm.get('releaseDate')?.touched
+            " class="text-danger">
+            Data premiery jest wymagana
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="poster" class="form-label">Plakat</label>
+          <input type="file" id="poster" (change)="onFileSelected($event)" class="form-control" #fileInput />
+          <img *ngIf="posterPreview" [src]="posterPreview" alt="Podgląd plakatu" class="img-thumbnail mt-2"
+            style="max-height: 200px;" />
+        </div>
+        <button type="submit" class="btn btn-success" [disabled]="!movieForm.valid">
+          Zapisz zmiany
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+  <div class="mt-3 text-success" *ngIf="successMessage">
+    {{ successMessage }}
+  </div>
+</div>

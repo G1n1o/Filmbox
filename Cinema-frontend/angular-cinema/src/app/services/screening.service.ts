@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Screening } from '../common/screening';
 import { HttpClient } from '@angular/common/http';
-import { CinemaHall } from '../common/cinema-hall';
 import { ReservedSeat } from '../common/reserved-seat';
 import { environment } from 'src/environments/environment.development';
 

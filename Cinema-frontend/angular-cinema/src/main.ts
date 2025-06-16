@@ -1,18 +1,22 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-
-import { AppModule } from './app/app.module';
-
-// import function to register Swiper custom elements
+import { bootstrapApplication } from '@angular/platform-browser';
+import { AppComponent } from './app/app.component';
+import { provideHttpClient } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
+import { routes } from './app/routes/app.routes'; 
 import { register } from 'swiper/element/bundle';
-// register Swiper custom elements
-register();
-
 import { registerLocaleData } from '@angular/common';
 import localePl from '@angular/common/locales/pl';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
+
+register();
 registerLocaleData(localePl);
 
-
-
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideHttpClient(),
+    provideRouter(routes),
+    provideAnimationsAsync(),
+    { provide: 'LOCALE_ID', useValue: 'pl' }
+  ]
+}).catch(err => console.error(err));
