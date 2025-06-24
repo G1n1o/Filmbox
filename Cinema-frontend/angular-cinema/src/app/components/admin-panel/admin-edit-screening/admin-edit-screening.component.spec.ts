@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminDeleteScreeningComponent } from './admin-delete-screening.component';
+import { AdminDeleteScreeningComponent } from './admin-edit-screening.component';
 
 describe('AdminDeleteScreeningComponent', () => {
   let component: AdminDeleteScreeningComponent;
@@ -8,10 +8,9 @@ describe('AdminDeleteScreeningComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AdminDeleteScreeningComponent]
-    })
-    .compileComponents();
-    
+      imports: [AdminDeleteScreeningComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(AdminDeleteScreeningComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

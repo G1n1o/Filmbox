@@ -10,9 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 @RestController
@@ -55,9 +53,7 @@ public class MovieController {
     ) {
         try {
             movieService.saveMovieWithPoster(title, description, duration, releaseDate, poster);
-            return ResponseEntity.ok(
-                    java.util.Map.of("message", "Film zapisany pomyślnie")
-            );
+            return ResponseEntity.ok().build();
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(java.util.Map.of("error", "Błąd podczas zapisywania filmu: " + e.getMessage()));
@@ -75,13 +71,11 @@ public class MovieController {
     ) {
         try {
             movieService.updateMovie(id, title, description, duration, releaseDate, poster);
-            Map<String, String> response = new HashMap<>();
-            response.put("message", "Film został zaktualizowany.");
-            return ResponseEntity.ok(response);
+            return ResponseEntity.ok().build();
             
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Błąd przy aktualizacji filmu: " + e.getMessage());
+                    .body(java.util.Map.of("error", "Błąd podczas aktualizacji filmu: " + e.getMessage()));
         }
     }
 

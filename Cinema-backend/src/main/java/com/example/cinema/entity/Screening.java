@@ -1,10 +1,13 @@
 package com.example.cinema.entity;
 
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
 
 @Entity
 @Table(name = "screening")
@@ -18,7 +21,8 @@ public class Screening {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "movie_id", nullable = false)
+    @JoinColumn(name = "movie_id")
+
     private Movie movie;
 
     @ManyToOne
@@ -27,5 +31,10 @@ public class Screening {
 
     @Column(name = "screening_time")
     private LocalDateTime screeningTime;
+
+
+
+
+
 
 }

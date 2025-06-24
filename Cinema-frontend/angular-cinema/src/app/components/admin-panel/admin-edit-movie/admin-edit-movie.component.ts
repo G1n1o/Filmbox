@@ -9,16 +9,19 @@ import { MovieService } from 'src/app/services/movie.service';
 import { Movie } from 'src/app/common/movie';
 import { CommonModule } from '@angular/common';
 import { environment } from 'src/environments/environment.development';
+import {
+  FaIconLibrary,
+  FontAwesomeModule,
+} from '@fortawesome/angular-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-admin-edit-movie',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FontAwesomeModule],
   templateUrl: './admin-edit-movie.component.html',
   styleUrls: ['./admin-edit-movie.component.css'],
 })
-
-
 export class AdminEditMovieComponent implements OnInit {
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
   movies: Movie[] = [];
@@ -26,12 +29,18 @@ export class AdminEditMovieComponent implements OnInit {
   movieForm: FormGroup;
   selectedFile: File | null = null;
   posterPreview: string | null = null;
-  successMessage = '';
+  successMessage: string = '';
+  errorMessage: string = '';
 
-  constructor(private fb: FormBuilder, private movieService: MovieService) {
+  constructor(
+    private fb: FormBuilder,
+    private movieService: MovieService,
+    private faLibrary: FaIconLibrary
+  ) {
+    this.faLibrary.addIcons(faTrash);
     this.movieForm = this.fb.group({
       title: ['', Validators.required],
-      description: [''],
+      description: ['', Validators.maxLength(500)],
       duration: ['', [Validators.required, Validators.min(1)]],
       releaseDate: ['', Validators.required],
     });
@@ -95,6 +104,8 @@ export class AdminEditMovieComponent implements OnInit {
   }
 
   onSubmit() {
+    this.errorMessage = '';
+
     if (!this.movieForm.valid || !this.selectedMovie) return;
 
     const formData = new FormData();
@@ -122,6 +133,8 @@ export class AdminEditMovieComponent implements OnInit {
       },
       error: (err) => {
         console.error('Błąd aktualizacji filmu:', err);
+        this.errorMessage =
+          'Wystąpił błąd przy aktualizacji filmu. Sprawdź dane i spróbuj ponownie.';
       },
     });
   }

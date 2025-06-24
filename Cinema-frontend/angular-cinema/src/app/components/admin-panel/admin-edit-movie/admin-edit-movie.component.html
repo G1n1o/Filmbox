@@ -1,6 +1,6 @@
-<div class="container mt-4"   style="max-height: calc(100vh - 220px); overflow-y: auto;">
+<div class="container" style="max-height: calc(100vh - 220px); overflow-y: auto;">
   <div class="row">
-    <!-- Lewy panel: lista filmów -->
+    <!-- Left side: Movie list-->
     <div class="col-md-5">
       <h3>Filmy</h3>
       <ul class="list-group">
@@ -8,18 +8,18 @@
           [class.active]="selectedMovie?.id === movie.id" style="cursor: pointer;" (click)="onEditMovie(movie)">
           {{ movie.title }}
           <div>
-            <button class="btn btn-sm btn-primary me-2" (click)="onEditMovie(movie); $event.stopPropagation()">
+            <!-- <button class="btn btn-sm btn-primary me-2" (click)="onEditMovie(movie); $event.stopPropagation()">
               Edytuj
-            </button>
+            </button> -->
             <button class="btn btn-sm btn-danger" (click)="onDeleteMovie(movie.id!); $event.stopPropagation()">
-              Usuń
+              <fa-icon [icon]="['fas', 'trash']"></fa-icon>
             </button>
           </div>
         </li>
       </ul>
     </div>
 
-    <!-- Prawy panel: formularz edycji -->
+    <!-- Right side: Editing form -->
     <div class="col-md-7" *ngIf="selectedMovie" style="max-height: calc(100vh - 220px); overflow-y: auto;">
       <h3>Edytuj film: {{ selectedMovie.title }}</h3>
       <form [formGroup]="movieForm" (ngSubmit)="onSubmit()">
@@ -33,6 +33,10 @@
         <div class="mb-3">
           <label for="description" class="form-label">Opis</label>
           <textarea id="description" formControlName="description" class="form-control"></textarea>
+          <div class="text-danger"
+            *ngIf="movieForm.get('description')?.errors?.['maxlength'] && movieForm.get('description')?.touched">
+            Opis może zawierać maksymalnie 500 znaków.
+          </div>
         </div>
         <div class="mb-3">
           <label for="duration" class="form-label">Czas trwania (min)</label>
@@ -66,6 +70,9 @@
 
     </div>
 
+  </div>
+  <div *ngIf="errorMessage" class="alert alert-danger mt-4">
+    {{ errorMessage }}
   </div>
   <div class="mt-3 text-success" *ngIf="successMessage">
     {{ successMessage }}

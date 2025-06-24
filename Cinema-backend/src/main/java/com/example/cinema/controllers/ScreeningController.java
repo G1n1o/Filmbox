@@ -1,15 +1,10 @@
 package com.example.cinema.controllers;
 
-import com.example.cinema.dao.ScreeningRepository;
-import com.example.cinema.entity.CinemaHall;
+import com.example.cinema.dto.ScreeningRequest;
 import com.example.cinema.entity.Screening;
-import org.springframework.http.HttpStatus;
+import com.example.cinema.service.ScreeningService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,20 +12,37 @@ import java.util.List;
 @RequestMapping("/api/screenings")
 public class ScreeningController {
 
-    private final ScreeningRepository screeningRepository;
+    private final ScreeningService screeningService;
 
-    public ScreeningController(ScreeningRepository screeningRepository) {
-        this.screeningRepository = screeningRepository;
+    public ScreeningController(ScreeningService screeningService) {
+        this.screeningService = screeningService;
     }
 
     @GetMapping
     public List<Screening> getAllScreenings() {
-        return screeningRepository.findAllByOrderByScreeningTimeAsc();
+        return screeningService.getAllScreenings();
     }
 
     @GetMapping("/{id}")
     public Screening getScreeningById(@PathVariable Integer id) {
-        return screeningRepository.getScreeningById(id);
+        return screeningService.getScreeningById(id);
     }
 
+    @PostMapping
+    public ResponseEntity<?> addScreening(@RequestBody ScreeningRequest screeningRequest) {
+        screeningService.addScreening(screeningRequest);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateScreening(@PathVariable Integer id, @RequestBody ScreeningRequest screeningRequest) {
+        screeningService.updateScreening(id, screeningRequest);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteScreening(@PathVariable Integer id) {
+        screeningService.deleteScreening(id);
+        return ResponseEntity.ok().build();
+    }
 }

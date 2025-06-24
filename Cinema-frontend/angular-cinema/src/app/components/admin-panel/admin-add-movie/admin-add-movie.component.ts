@@ -22,11 +22,16 @@ export class AdminAddMovieComponent {
   posterPreview: string | null = null;
   successMessage: string = '';
   isLoading: boolean = false;
+  errorMessage: string = '';
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private movieService: MovieService) {
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private movieService: MovieService
+  ) {
     this.movieForm = this.fb.group({
       title: ['', Validators.required],
-      description: [''],
+      description: ['', Validators.maxLength(500)],
       duration: ['', Validators.required],
       releaseDate: ['', Validators.required],
     });
@@ -46,6 +51,8 @@ export class AdminAddMovieComponent {
   }
 
   onSubmit() {
+    this.errorMessage = '';
+
     if (!this.movieForm.valid || !this.selectedFile) return;
 
     const formData = new FormData();
@@ -55,7 +62,7 @@ export class AdminAddMovieComponent {
     formData.append('releaseDate', this.movieForm.get('releaseDate')?.value);
     formData.append('poster', this.selectedFile);
 
-     this.isLoading = true;
+    this.isLoading = true;
 
     this.movieService.addMovie(formData).subscribe({
       next: (res) => {
@@ -66,8 +73,9 @@ export class AdminAddMovieComponent {
         this.isLoading = false;
       },
       error: (err) => {
-        console.error('Błąd przy dodawaniu filmu:', err);
         this.isLoading = false;
+        this.errorMessage =
+          'Wystąpił błąd przy dodawaniu filmu. Sprawdź dane i spróbuj ponownie.';
       },
     });
   }

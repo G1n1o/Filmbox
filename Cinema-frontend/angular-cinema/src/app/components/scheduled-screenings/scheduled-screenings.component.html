@@ -28,7 +28,7 @@
           <img [src]="getPosterFullUrl(screening.movie.posterUrl)" alt="{{ screening.movie.title }}" class="me-3" style="width: 60px; height: auto;">
           <div>
             <h6 class="mb-0">{{ screening.movie.title }}</h6>
-            <small>Godzina: {{ screening.screeningTime | date:'shortTime' }} | {{ screening.cinemaHall.name }}</small><br />
+            <small>Godzina: {{ screening.screeningTime | date: 'HH:mm' }} | {{ screening.cinemaHall.name }}</small><br />
             <a [routerLink]="['/movies', screening.movie.id]" class="btn btn-sm btn-outline-primary mt-1 me-2">Szczegóły filmu</a>
             <button class="btn btn-sm btn-success mt-1" (click)="onReserve(screening.id)">Rezerwuj</button>
           </div>

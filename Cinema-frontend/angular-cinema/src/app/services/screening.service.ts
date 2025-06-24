@@ -29,5 +29,16 @@ export class ScreeningService {
     );
   }
 
+  addScreening(data: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/screenings`, data);
+  }
 
+  updateScreening(id: number, data: any): Observable<any> {
+    return this.http.put(`${this.baseUrl}/screenings/${id}`, data);
+  }
+
+  deleteScreening(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/screenings/${id}`);
+  }
 }
+    

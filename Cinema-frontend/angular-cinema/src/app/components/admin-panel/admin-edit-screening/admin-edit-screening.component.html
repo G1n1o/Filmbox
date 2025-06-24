@@ -1,0 +1,56 @@
+<div class="container" style="max-height: calc(100vh - 220px); overflow-y: auto;">
+  <div class="row">
+    <!--List of screenings-->
+    <div class="col-md-5">
+      <h3>Seanse</h3>
+      <ul class="list-group">
+        <li *ngFor="let screening of screenings" class="list-group-item d-flex justify-content-between align-items-center"
+            [class.active]="selectedScreening?.id === screening.id" style="cursor: pointer;" (click)="onEditScreening(screening)">
+          {{ screening.movie.title }} - {{ screening.screeningTime | date: 'short' }}
+          <div>
+            <!-- <button class="btn btn-sm btn-primary me-2" (click)="onEditScreening(screening); $event.stopPropagation()">Edytuj</button> -->
+            <button class="btn btn-sm btn-danger" (click)="onDeleteScreening(screening.id); $event.stopPropagation()">
+               <fa-icon [icon]="['fas', 'trash']"></fa-icon>
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Editing form -->
+    <div class="col-md-7" *ngIf="selectedScreening">
+      <h3>Edytuj seans</h3>
+      <form [formGroup]="screeningForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="movieId" class="form-label">Film</label>
+          <select id="movieId" formControlName="movieId" class="form-select">
+            <option *ngFor="let movie of movies" [value]="movie.id">{{ movie.title }}</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="cinemaHallId" class="form-label">Sala kinowa</label>
+          <select id="cinemaHallId" formControlName="cinemaHallId" class="form-select">
+            <option *ngFor="let hall of cinemaHalls" [value]="hall.id">Sala {{ hall.id }}</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="screeningTime" class="form-label">Godzina seansu</label>
+          <input type="datetime-local" id="screeningTime" formControlName="screeningTime" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-success" [disabled]="!screeningForm.valid">Zapisz zmiany</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Announcements -->
+  <div *ngIf="errorMessage" class="alert alert-danger mt-4">
+    {{ errorMessage }}
+  </div>
+  <div class="mt-3 text-success" *ngIf="successMessage">
+    {{ successMessage }}
+  </div>
+</div>
+

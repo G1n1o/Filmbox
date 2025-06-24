@@ -10,4 +10,6 @@ public interface SeatReservationRepository extends JpaRepository<SeatReservation
     List<SeatReservation> findByScreeningId(Long screeningId);
 
     boolean existsByScreeningIdAndSeatRowAndSeatNumber(Long screeningId, int row, int seat);
+
+    void deleteByScreeningId(Integer screeningId);
 }

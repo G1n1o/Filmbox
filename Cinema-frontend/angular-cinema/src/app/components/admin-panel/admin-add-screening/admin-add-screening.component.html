@@ -1,1 +1,31 @@
-<p>admin-add-screening works!</p>
+<div class="card shadow-sm p-4">
+  <h2 class="mb-4 text-primary"><i class="fas fa-video"></i> DODAWANIE SEANSU</h2>
+  <form [formGroup]="screeningForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label class="form-label">Film</label>
+      <select class="form-select" formControlName="movieId" required>
+        <option *ngFor="let movie of movies" [value]="movie.id">{{ movie.title }}</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Sala kinowa</label>
+      <select class="form-select" formControlName="cinemaHallId" required>
+        <option *ngFor="let hall of cinemaHalls" [value]="hall.id">{{ hall.name }}</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Data i godzina seansu</label>
+      <input type="datetime-local" class="form-control" formControlName="screeningTime" required />
+    </div>
+
+    <div *ngIf="isLoading">⏳ Trwa dodawanie...</div>
+
+    <button type="submit" class="btn btn-success" [disabled]="!screeningForm.valid">Dodaj seans</button>
+  </form>
+
+  <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+  <div *ngIf="successMessage" class="alert alert-success mt-3">{{ successMessage }}</div>
+</div>
+
