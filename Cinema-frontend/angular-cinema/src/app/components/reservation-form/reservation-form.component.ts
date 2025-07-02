@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 import { ReservationService } from 'src/app/services/reservation.service';
 import { environment } from 'src/environments/environment.development';
 import { PaymentInfo } from 'src/app/common/payment-info';
+import { SettingService } from 'src/app/services/setting.service';
 
 @Component({
   selector: 'app-reservation-form',
@@ -25,9 +26,11 @@ export class ReservationFormComponent implements OnInit {
   selectedSeats: Seat[] = [];
   screeningId!: number;
   userForm!: FormGroup;
-  ticketPrice: number = environment.ticketPrice;
+  ticketPrice: number = 0;
 
   isDisabled: boolean = false;
+
+  storage: Storage = sessionStorage;
 
   // initialize Stripe API
   stripe = Stripe(environment.stripePublishableKey);
@@ -40,7 +43,8 @@ export class ReservationFormComponent implements OnInit {
     private location: Location,
     private router: Router,
     private snackBar: MatSnackBar,
-    private reservationService: ReservationService
+    private reservationService: ReservationService,
+    private settingService: SettingService
   ) {}
 
   ngOnInit(): void {
@@ -54,6 +58,14 @@ export class ReservationFormComponent implements OnInit {
 
     // setup Stripe payment form
     this.setupStripePaymentForm();
+
+    // read the user's email adddress from browser storage
+    const theEmail = JSON.parse(this.storage.getItem('userEmail')!);
+
+    // read ticket Price
+    this.settingService.getTicketPrice().subscribe((price) => {
+      this.ticketPrice = price;
+    });
 
     this.userForm = this.fb.group({
       customer: this.fb.group({
@@ -74,7 +86,7 @@ export class ReservationFormComponent implements OnInit {
           ],
         ],
         email: [
-          '',
+          theEmail,
           [
             Validators.required,
             Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),

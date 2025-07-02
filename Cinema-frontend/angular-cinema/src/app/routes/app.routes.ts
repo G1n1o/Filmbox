@@ -6,10 +6,15 @@ import { SeatSelectionComponent } from '../components/seat-selection/seat-select
 import { ScheduledScreeningsComponent } from '../components/scheduled-screenings/scheduled-screenings.component';
 import { MovieDetailsComponent } from '../components/movie-details/movie-details.component';
 import { MovieListComponent } from '../components/movie-list/movie-list.component';
-import { adminRoutes} from './admin.routes';
+import { adminRoutes } from './admin.routes';
+import { OktaCallbackComponent } from '@okta/okta-angular';
+
+import { LoginComponent } from '../components/login/login.component';
 
 export const routes: Routes = [
-  { path: 'admin', component: AdminPanelComponent },
+  { path: 'login/callback', component: OktaCallbackComponent },
+  { path: 'login', component: LoginComponent },
+
   { path: 'summary', component: SummaryComponent },
   { path: 'reservation', component: ReservationFormComponent },
   { path: 'screenings/:id/reservation', component: SeatSelectionComponent },
@@ -17,8 +22,7 @@ export const routes: Routes = [
   { path: 'movies/:id', component: MovieDetailsComponent },
   { path: 'search/:keyword', component: MovieListComponent },
   { path: 'movies', component: MovieListComponent },
-    ...adminRoutes,
+  ...adminRoutes,
   { path: '', redirectTo: '/movies', pathMatch: 'full' },
   { path: '**', redirectTo: '/movies', pathMatch: 'full' },
-
 ];

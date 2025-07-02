@@ -17,17 +17,22 @@ export class ScheduledScreeningsComponent implements OnInit {
   groupedScreenings: { [date: string]: Screening[] } = {};
   sortedDates: string[] = [];
 
+   isLoading: boolean = true;
+
   constructor(
     private screeningService: ScreeningService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
+
     this.screeningService.getAllScreenings().subscribe((data) => {
       this.screenings = data;
 
       this.groupedScreenings = this.groupByDate(this.screenings);
       this.sortedDates = Object.keys(this.groupedScreenings).sort();
+      this.isLoading = false;
     });
   }
     getPosterFullUrl(posterUrl: string) {

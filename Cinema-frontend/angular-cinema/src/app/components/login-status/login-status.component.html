@@ -1,0 +1,24 @@
+<div class="login-status-header">
+
+    <div *ngIf="isAuthenticated && userFullName" class="login-status-user-info">
+        Witaj ponownie {{ userFullName }}!
+    </div>
+    <li class="nav-item me-5">
+        <button *ngIf="!isAuthenticated" routerLink="/login" class="btn btn-outline-light">Zaloguj</button>
+    </li>
+    <li class="nav-item me-1">
+        <button *ngIf="isAuthenticated" (click)="logout()" class="btn btn-outline-light">Wyloguj</button>
+    </li>
+
+    <li class="nav-item ms-1 me-3">
+        <button  *ngIf="isAdmin" class="btn btn-outline-warning" routerLink="/admin/add">Panel Admina</button>
+    </li>
+    <li class="nav-item ms-1 me-2">
+        <button class="btn btn-outline-light" routerLink="/movies">Filmy</button>
+    </li>
+
+    <li class="nav-item">
+        <button class="btn btn-outline-light" routerLink="/screenings">Seanse</button>
+    </li>
+
+</div>

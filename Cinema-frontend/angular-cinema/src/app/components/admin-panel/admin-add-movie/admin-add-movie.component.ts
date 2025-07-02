@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import {
   FormBuilder,
@@ -12,7 +12,7 @@ import { MovieService } from 'src/app/services/movie.service';
 @Component({
   selector: 'app-admin-add-movie',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './admin-add-movie.component.html',
   styleUrl: './admin-add-movie.component.css',
 })

@@ -29,11 +29,11 @@
 
   <button id="nextBtn" class="swiper-nav-button right">&#10095;</button>
 
-  <!-- if movie list empty than display a message-->
+
  <div *ngIf="isLoading" class="spinner-container">
   <div class="spinner-border text-primary" role="status"></div>
 </div>
-
+  <!-- if movie list empty than display a message-->
 <div *ngIf="!isLoading && movies.length === 0" class="alert alert-warning col-md-12" role="alert">
   <p>Brak wyników wyszukiwania.</p>
 </div>

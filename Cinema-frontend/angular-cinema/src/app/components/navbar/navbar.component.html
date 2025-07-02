@@ -17,19 +17,12 @@
 
         <!-- Buttons -->
         <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
-            <ul class="navbar-nav mb-2 mb-lg-0">
-                <li class="nav-item me-5">
-                    <a class="btn btn-outline-light" href="#">Zaloguj się</a>
-                </li>
-                <li class="nav-item ms-1">
-                    <a class="btn btn-outline-warning" routerLink="/admin/add">Panel Admina</a>
-                </li>
-                <li class="nav-item ms-1 me-2">
-                    <a class="btn btn-outline-light" routerLink="/movies">Filmy</a>
-                </li>
-                <li class="nav-item">
-                    <a class="btn btn-outline-light" routerLink="/screenings">Seanse</a>
-                </li>
+            <ul class="navbar-nav mb-2 mb-lg-0 align-items-center">
+
+                <app-login-status></app-login-status>
+
+               
+
             </ul>
         </div>
     </div>

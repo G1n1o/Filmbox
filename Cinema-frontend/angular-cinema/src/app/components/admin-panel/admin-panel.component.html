@@ -1,4 +1,4 @@
-<nav class="col-md-3 col-lg-2 d-md-block bg-dark sidebar text-white p-3 vh-100">
+<nav class="col-md-3 col-lg-2 d-md-block bg-dark sidebar text-white p-3 mb-5 vh-100">
   <h4>Admin Panel</h4>
   <ul class="nav flex-column">
     <li class="nav-item">
@@ -14,7 +14,17 @@
       <a class="nav-link text-white" routerLink="edit-screening" routerLinkActive="active">🗑️ Edytuj/Usuń seans</a>
     </li>
   </ul>
+
+    <div class="mt-5">
+    <label for="priceInput" class="form-label">Cena biletu (zł):</label>
+    <div class="d-flex gap-2">
+      <input type="number" class="form-control form-control-sm" id="priceInput" [(ngModel)]="ticketPrice" (keyup.enter)="saveTicketPrice()" />
+      <button class="btn btn-sm btn-outline-light" (click)="saveTicketPrice()">💾 Zapisz</button>
+    </div>
+  </div>
+
 </nav>
+
 
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
   <router-outlet></router-outlet>
