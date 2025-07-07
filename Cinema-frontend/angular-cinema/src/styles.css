@@ -12,19 +12,21 @@ html,
 body {
   height: 100%;
   margin: 0;
+  font-size: 80%;
 }
 
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-image: url('assets/background.jpg') ;
+  background-image: url("assets/background.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
+
 body::before {
-  content: '';
+  content: "";
   position: fixed;
   top: 0;
   left: 0;
@@ -33,7 +35,6 @@ body::before {
   background-color: rgba(0, 0, 0, 0.05); /* <- zmieniaj ten parametr */
   z-index: -1;
 }
-
 
 app-root {
   display: flex;
@@ -54,7 +55,6 @@ app-root {
   max-width: 100%;
 }
 
-
 .spinner-container {
   position: absolute;
   top: 50%;
@@ -62,3 +62,8 @@ app-root {
   transform: translate(-50%, -50%);
 }
 
+.view {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

@@ -1,44 +1,46 @@
-<div class="swiper-wrapper-center mt-3">
+<div class="view">
+  <div class="swiper-wrapper-center mt-3">
 
-  <button id="prevBtn" class="swiper-nav-button left">&#10094;</button>
+    <button id="prevBtn" class="swiper-nav-button left">&#10094;</button>
 
-  <swiper-container init="false" space-between="10" slides-per-view="auto" class="custom-swiper" navigation="true">
-    <swiper-slide *ngFor="let movie of movies">
-      <div class="card custom-card mb-4">
-
-        <a routerLink="/movies/{{ movie.id}}">
-          <img [src]="getPosterFullUrl(movie.posterUrl)" class="card-img-top movie-card-img" [alt]="movie.title" />
-        </a>
-
-        <div class="card-body">
+    <swiper-container init="false" space-between="10" slides-per-view="auto" class="custom-swiper" navigation="true">
+      <swiper-slide *ngFor="let movie of movies">
+        <div class="card custom-card mb-4">
 
           <a routerLink="/movies/{{ movie.id}}">
-            <h5 class="card-title">{{ movie.title }}</h5>
+            <img [src]="getPosterFullUrl(movie.posterUrl)" class="card-img-top movie-card-img" [alt]="movie.title" />
           </a>
 
-          <p class="card-text small text-muted">{{ movie.description }}</p>
+          <div class="card-body">
+
+            <a routerLink="/movies/{{ movie.id}}">
+              <h5 class="card-title">{{ movie.title }}</h5>
+            </a>
+
+            <p class="card-text small text-muted">{{ movie.description }}</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">
+              Premiera: {{ movie.releaseDate }} | {{ movie.duration }} min
+            </small>
+          </div>
         </div>
-        <div class="card-footer">
-          <small class="text-muted">
-            Premiera: {{ movie.releaseDate }} | {{ movie.duration }} min
-          </small>
-        </div>
-      </div>
-    </swiper-slide>
-  </swiper-container>
+      </swiper-slide>
+    </swiper-container>
 
-  <button id="nextBtn" class="swiper-nav-button right">&#10095;</button>
+    <button id="nextBtn" class="swiper-nav-button right">&#10095;</button>
 
 
-  <div *ngIf="isLoading" class="spinner-container">
-    <div class="spinner-border text-primary" role="status"></div>
+    <div *ngIf="isLoading" class="spinner-container">
+      <div class="spinner-border text-primary" role="status"></div>
+    </div>
+    <!-- if movie list empty than display a message-->
+    <div *ngIf="!isLoading && movies.length === 0" class="alert alert-warning col-md-12" role="alert">
+      <p>Brak wyników wyszukiwania.</p>
+    </div>
+
+
+
   </div>
-  <!-- if movie list empty than display a message-->
-  <div *ngIf="!isLoading && movies.length === 0" class="alert alert-warning col-md-12" role="alert">
-    <p>Brak wyników wyszukiwania.</p>
-  </div>
-
-
-
+  <app-ai-assistant></app-ai-assistant>
 </div>
-<app-ai-assistant></app-ai-assistant>
