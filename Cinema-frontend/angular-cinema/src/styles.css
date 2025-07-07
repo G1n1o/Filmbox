@@ -18,7 +18,22 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-image: url('assets/background.jpg') ;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.05); /* <- zmieniaj ten parametr */
+  z-index: -1;
+}
+
 
 app-root {
   display: flex;

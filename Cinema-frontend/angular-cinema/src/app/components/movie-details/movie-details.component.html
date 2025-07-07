@@ -2,11 +2,8 @@
   <div class="row">
     <!-- Plakat filmu -->
     <div class="col-md-4 text-center mb-3">
-      <img
-        [src]="getPosterFullUrl(movie!.posterUrl)"
-        alt="{{ movie?.title }} poster"
-        class="img-fluid rounded shadow"
-      />
+      <img *ngIf="movie" [src]="getPosterFullUrl(movie.posterUrl)" alt="{{ movie.title }} poster"
+        class="img-fluid rounded shadow" />
     </div>
 
     <!-- Szczegóły filmu -->
@@ -24,24 +21,24 @@
 
       <hr />
 
-<h4>Seanse:</h4>
-<div *ngIf="screenings.length > 0; else noScreenings">
-  <ul class="list-group">
-    <li *ngFor="let screening of screenings" class="list-group-item">
-      <strong>Data:</strong> {{ screening.screeningTime | date: 'short' }}<br />
-      <strong>Sala:</strong> {{ screening.cinemaHall.name }} ({{ screening.cinemaHall.capacity }} miejsc)
-      <button class="btn btn-primary btn-sm" (click)="onReserve(screening.id)">
-    Rezerwuj
-  </button>
-    </li>
-  </ul>
-</div>
+      <h4>Seanse:</h4>
+      <div *ngIf="screenings.length > 0; else noScreenings">
+        <ul class="list-group">
+          <li *ngFor="let screening of screenings" class="list-group-item">
+            <strong>Data:</strong> {{ screening.screeningTime | date: 'short' }}<br />
+            <strong>Sala:</strong> {{ screening.cinemaHall.name }} ({{ screening.cinemaHall.capacity }} miejsc)
+            <button class="btn btn-primary btn-sm" (click)="onReserve(screening.id)">
+              Rezerwuj
+            </button>
+          </li>
+        </ul>
+      </div>
 
-<ng-template #noScreenings>
-  <p class="text-muted">Brak zaplanowanych seansów.</p>
-</ng-template>
+      <ng-template #noScreenings>
+        <p class="text-muted">Brak zaplanowanych seansów.</p>
+      </ng-template>
 
-      <button class="btn btn-secondary mt-3"  (click)="goBack()">
+      <button class="btn btn-secondary mt-3" (click)="goBack()">
         ← Wróć do listy
       </button>
     </div>

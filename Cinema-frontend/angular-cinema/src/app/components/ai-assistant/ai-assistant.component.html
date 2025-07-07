@@ -1,0 +1,30 @@
+<div class="ai-assistant p-3 mb-4 border rounded bg-light">
+  <h5>Asystent AI - Pomoc w wyborze filmu</h5>
+  <textarea
+    [(ngModel)]="userInput"
+    rows="3"
+    placeholder="Opisz, jaki film Cię interesuje..."
+    class="form-control mb-2"
+  ></textarea>
+  <button
+    class="btn btn-primary mb-2"
+    (click)="askAi()"
+    [disabled]="loading || !userInput.trim()"
+  >
+    Zapytaj AI
+  </button>
+
+  <div *ngIf="loading" class="mb-2">Proszę czekać, AI myśli...</div>
+
+  <div *ngIf="aiResponse" class="mt-2">
+    <h6>Rekomendacje AI:</h6>
+    <div
+      [innerHTML]="aiResponseHtml"
+      class="alert"
+      [ngClass]="{
+        'alert-success': !isError,
+        'alert-danger': isError
+      }"
+    ></div>
+  </div>
+</div>

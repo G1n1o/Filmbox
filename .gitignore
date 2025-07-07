@@ -4,6 +4,7 @@ Cinema-frontend/dist/
 Cinema-frontend/.angular/
 Cinema-frontend/.vscode/
 Cinema-frontend/.idea/
+Cinema-frontend/angular-cinema/src/environments/*
 
 # ======= SPRING BOOT BACKEND (Cinema-backend) =======
 Cinema-backend/target/
@@ -11,8 +12,8 @@ Cinema-backend/.classpath
 Cinema-backend/.project
 Cinema-backend/.settings/
 Cinema-backend/.idea/
-
 Cinema-backend/src/main/resources/application.properties
+
 
 # ======= IGNORE SCRIPTS FOLDER =======
 Scripts/

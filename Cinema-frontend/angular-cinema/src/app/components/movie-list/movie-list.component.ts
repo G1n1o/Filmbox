@@ -9,11 +9,12 @@ import { MovieService } from 'src/app/services/movie.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { environment } from 'src/environments/environment.development';
+import { AiAssistantComponent } from '../ai-assistant/ai-assistant.component';
 
 @Component({
   selector: 'app-movie-list',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, AiAssistantComponent],
   templateUrl: './movie-list.component.html',
   styleUrls: ['./movie-list.component.css'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
