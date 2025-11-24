@@ -11,7 +11,7 @@ Po stronie backendu za logikę biznesową odpowiada Spring Boot, a dane przechow
 ## Wykorzystane technologie
 **Angular, Java, Spring Boot, Maven, MySQL, Stripe, Okta**
 
-
+<br>
 
 ![Opis obrazka](filmbox.gif)
 
