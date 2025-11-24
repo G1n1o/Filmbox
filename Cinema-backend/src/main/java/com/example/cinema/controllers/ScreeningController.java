@@ -2,7 +2,7 @@ package com.example.cinema.controllers;
 
 import com.example.cinema.dto.ScreeningRequest;
 import com.example.cinema.entity.Screening;
-import com.example.cinema.service.ScreeningService;
+import com.example.cinema.services.ScreeningService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

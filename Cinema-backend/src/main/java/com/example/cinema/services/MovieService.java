@@ -6,7 +6,6 @@ import com.example.cinema.dao.SeatReservationRepository;
 import com.example.cinema.entity.Movie;
 import com.example.cinema.entity.Screening;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 

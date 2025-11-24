@@ -1,4 +1,4 @@
-package com.example.cinema.service;
+package com.example.cinema.services;
 
 import com.example.cinema.dao.CinemaHallRepository;
 import com.example.cinema.dao.MovieRepository;
