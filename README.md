@@ -13,7 +13,5 @@ Po stronie backendu za logikę biznesową odpowiada Spring Boot, a dane przechow
 
 
 
-![Opis obrazka](Cinema-frontend/angular-cinema/images/main.png)
+![Opis obrazka](filmbox.gif)
 
-
-![Opis obrazka](Cinema-frontend/angular-cinema/images/details.png)
