@@ -58,7 +58,7 @@ This screen serves as the final step of the booking process, giving the user a c
 
 ## Admin panel
 
-The application includes a dedicated administration panel, giving authorized users full control over the cinema’s content and schedule. From this interface, administrators can efficiently manage the entire repertoire by:
+Filmbox includes a dedicated administration panel, giving authorized users full control over the cinema’s content and schedule. From this interface, administrators can efficiently manage the entire repertoire by:
 
 - adding and editing movies,
 
