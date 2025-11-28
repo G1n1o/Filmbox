@@ -1,14 +1,16 @@
 # Filmbox
 
-Rozbudowana aplikacja kinowa, która umożliwia użytkownikowi przeglądanie repertuaru, rezerwację miejsc oraz zakup biletu online. Projekt uwzględnia integrację płatności (Stripe) oraz autoryzację (Okta).
+A comprehensive cinema application that allows users to browse the repertoire, reserve seats, and purchase tickets online. The project includes full payment integration (Stripe) and user authorization with Okta.
 
-Aplikacja kinowa stworzona z wykorzystaniem Angulara i Spring Boota, umożliwiająca kompleksowe zarządzanie repertuarem oraz rezerwację biletów online. Projekt zaprojektowano z myślą o użytkownikach, którzy chcą w prosty i wygodny sposób przeglądać seanse, wybierać miejsca na sali oraz dokonywać szybkich płatności przez Internet.
+CinemaApp was built using **Angular** on the frontend and **Spring Boot** on the backend, providing a complete system for managing movie screenings, seats, reservations, and user accounts. The goal of the application is to offer a smooth, intuitive experience for browsing movies, selecting seats on an interactive map of the auditorium, and completing secure online payments.
 
-Warstwa frontendowa została oparta na frameworku Bootstrap, co zapewnia pełną responsywność i nowoczesny wygląd interfejsu. Dodatkowo wykorzystałem Swiper, który umożliwia płynne przeglądanie filmów w formie karuzeli.
+The frontend uses **Bootstrap** to ensure a fully responsive layout and a clean, modern interface. The **Swiper** library is used to create a dynamic movie carousel, allowing users to quickly explore available titles.
 
-Po stronie backendu za logikę biznesową odpowiada Spring Boot, a dane przechowywane są w relacyjnej bazie MySQL. Struktura bazy została zaprojektowana z wykorzystaniem powiązanych tabel (filmy, seanse, bilety, miejsca, użytkownicy, rezerwacje), co pozwala na skuteczne odwzorowanie działania rzeczywistego systemu kinowego. W projekcie zastosowano Spring Data JPA, co usprawniło operacje CRUD i komunikację z bazą.
+The backend, developed in **Spring Boot**, handles business logic and communicates with a **MySQL** database. The system uses a relational schema with connected tables such as:  
+**movies, screenings, seats, tickets, users, reservations** — accurately reflecting real cinema operations. Integration with **Spring Data JPA** made CRUD operations and database communication more efficient and maintainable.
 
-## Wykorzystane technologie
+
+## Technologies Used
 **Angular, Java, Spring Boot, Maven, MySQL, Stripe, Okta**
 
 <br>
